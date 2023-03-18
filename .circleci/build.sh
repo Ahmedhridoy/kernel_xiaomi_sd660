@@ -12,8 +12,8 @@ KERNEL_DIR=$(pwd)
 PATH="${KERNEL_DIR}/clang/bin:${KERNEL_DIR}/gcc/bin:${KERNEL_DIR}/gcc32/bin:${PATH}"
 export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')"
 export ARCH=arm64
-export KBUILD_BUILD_HOST=circleci
-export KBUILD_BUILD_USER="sohamsen"
+export KBUILD_BUILD_HOST=CircleCi
+export KBUILD_BUILD_USER="RooGhz720"
 # sticker plox
 function sticker() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
@@ -49,7 +49,7 @@ function finerr() {
 }
 # Compile plox
 function compile() {
-    make O=out ARCH=arm64 lavender-perf_defconfig
+    make O=out ARCH=arm64 aghisna_defconfig
     make -j$(nproc --all) O=out \
                     ARCH=arm64 \
                     CC=clang \
@@ -66,7 +66,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 Predator-Stormbreaker-lavender-${TANGGAL}.zip *
+    zip -r9 Aghisna-HMP-Lavender-${TANGGAL}.zip *
     cd ..
 }
 sticker
